@@ -15,7 +15,12 @@ class CreateCurrenciesTable extends Migration
     {
         Schema::create('currencies', function (Blueprint $table) {
             $table->id();
+            $table->string('name',15)->unique();
+            $table->string('code',3)->unique();
+            $table->float('exchange_rate',8,2);
+            $table->boolean('is_default_exchanger')->default(false);
             $table->timestamps();
+
         });
     }
 

@@ -32,7 +32,7 @@
             @endif
             @if(\Illuminate\Support\Facades\Auth::check())
                 <div class="flex items-center gap-4">
-                      <span>{{\Illuminate\Support\Facades\Auth::user()->name}}</span>
+                      <span class="rounded-full shadow-md px-4 py-2">{{\Illuminate\Support\Facades\Auth::user()->name[0]}}</span>
                     <form action="{{route('logout')}}"method="post">
                         @csrf
                     <button class="bg-red-500 text-sm text-white px-6 py-2">logout</button>

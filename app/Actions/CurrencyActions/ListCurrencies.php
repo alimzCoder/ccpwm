@@ -16,10 +16,13 @@ class ListCurrencies
 {
     public static function execute($inputs = [])
     {
-        $record = new Currency();
+        $records = new Currency();
         if (!empty($inputs['search'])) {
-            $record = $record->where('name', 'LIKE', '%' . $inputs['search'] . '%');
+            $records = $records->where('name', 'LIKE', '%' . $inputs['search'] . '%');
         }
+        $records = $records->orderBy('id','DESC');
+
+        return $records->get();
     }
 
 }

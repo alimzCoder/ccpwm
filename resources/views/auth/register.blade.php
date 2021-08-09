@@ -140,12 +140,12 @@
             </div>
 
             <div class="mt-4">
-                <select class="border rounded-lg" name="role_id">
+                <select class="border rounded-lg" name="role">
                     <option value="">Select Role</option>
-                    <option value="1">Super Admin</option>
-                    <option value="2">Admin</option>
-                    <option value="3">Accountant</option>
-                    <option value="4">Cashier</option>
+                    <option value="super admin">Super Admin</option>
+                    <option value="admin">Admin</option>
+                    <option value="accountant">Accountant</option>
+                    <option value="cashier">Cashier</option>
 
                 </select>
             </div>

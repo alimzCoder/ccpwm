@@ -139,6 +139,17 @@
                 </div>
             </div>
 
+            <div class="mt-4">
+                <select class="border rounded-lg" name="role_id">
+                    <option value="">Select Role</option>
+                    <option value="1">Super Admin</option>
+                    <option value="2">Admin</option>
+                    <option value="3">Accountant</option>
+                    <option value="4">Cashier</option>
+
+                </select>
+            </div>
+
             <div class="mt-4 flex justify-end items-center">
                 <div class="col-md-6 offset-md-4">
                     <button type="submit" class="bg-blue-500 rounded-lg px-8 py-2 text-white">

@@ -5,7 +5,7 @@
 
     <div class="container m-4">
 
-        <span class="text-lg font-medium border-b">Currencies</span>
+        <span class="text-lg font-medium border-b">taxes</span>
         <span class="px-4"><a class="border-b text-blue-500" href="{{route('taxes.create')}}">create</a></span>
         <div class="gird grid-cols-1 gap-4 shadow-md rounded-lg p-4">
             <div class="flex justify-start items-center gap-80 border-b">
@@ -20,8 +20,13 @@
                     <span>{{$record->index}}</span>
                     <div class="">{{$record->amount}}</div>
                     <div class="">{{$record->is_active}}</div>
-                    <a href="">edit</a>
-                    <a href="">delete</a>
+                    <a class="text-purple-400 hover:text-purple-900"
+                       href="{{route('taxes.edit',$record->id)}}">courses</a>
+                    <form action="{{route('taxes.destroy',$record->id)}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button class="ml-10 text-red-600 hover:text-red-700">Delete</button>
+                    </form>
                 </div>
             @endforeach
         </div>

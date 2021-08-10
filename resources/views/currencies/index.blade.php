@@ -20,8 +20,13 @@
                 <span>{{$record->code}}</span>
                 <div class="">{{$record->exchange_rate}}</div>
                 <div class="">{{$record->is_default_exchanger}}</div>
-                <a href="">edit</a>
-                <a href="">delete</a>
+                <a class="text-purple-400 hover:text-purple-900"
+                   href="{{route('currencies.edit',$record->id)}}">courses</a>
+                <form action="{{route('currencies.destroy',$record->id)}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="ml-10 text-red-600 hover:text-red-700">Delete</button>
+                </form>
             </div>
             @endforeach
         </div>

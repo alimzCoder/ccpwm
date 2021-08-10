@@ -15,6 +15,9 @@ class CreateTaxesTable extends Migration
     {
         Schema::create('taxes', function (Blueprint $table) {
             $table->id();
+            $table->string('index',20)->unique();
+            $table->float('amount');
+            $table->boolean('is_active');
             $table->timestamps();
         });
     }

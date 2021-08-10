@@ -26,7 +26,7 @@
                 <div></div>
                 <div class="mt-">
                     <label for="exchange_rate">Rate</label>
-                    <div><input class="w-56" type="number" id="exchange_rate" name="exchange_rate" required placeholder="Currency Rate..."></div>
+                    <div><input class="w-56" type="number" id="exchange_rate" name="exchange_rate"  value="{{$record->exchange_rate}}" required placeholder="Currency Rate..."></div>
                 </div>
 
                 <div>

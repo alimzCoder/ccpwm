@@ -21,11 +21,11 @@
                     <div class="">{{$record->amount}}</div>
                     <div class="">{{$record->is_active}}</div>
                     <a class="text-purple-400 hover:text-purple-900"
-                       href="{{route('taxes.edit',$record->id)}}">courses</a>
+                       href="{{route('taxes.edit',$record->id)}}">edit</a>
                     <form action="{{route('taxes.destroy',$record->id)}}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button class="ml-10 text-red-600 hover:text-red-700">Delete</button>
+                        <button class="text-red-600 hover:text-red-700">Delete</button>
                     </form>
                 </div>
             @endforeach

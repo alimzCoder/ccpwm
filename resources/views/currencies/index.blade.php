@@ -25,7 +25,7 @@
                 <form action="{{route('currencies.destroy',$record->id)}}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button class="ml-10 text-red-600 hover:text-red-700">Delete</button>
+                    <button class="text-red-600 hover:text-red-700">Delete</button>
                 </form>
             </div>
             @endforeach

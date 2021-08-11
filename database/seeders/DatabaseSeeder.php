@@ -14,11 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('currencies')->insert([
-            'name' => 'dollar',
-            'code' => 'usd',
-            'exchange_rate' => '20',
-            'is_default_exchanger' => true,
-            ]);
+        //
     }
 }

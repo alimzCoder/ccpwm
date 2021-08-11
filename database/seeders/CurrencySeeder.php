@@ -14,6 +14,7 @@ class CurrencySeeder extends Seeder
      */
     public function run()
     {
+
         DB::table('currencies')->insert([
             'name' => 'dollar',
             'code' => 'usd',
@@ -27,7 +28,6 @@ class CurrencySeeder extends Seeder
             'exchange_rate' => '20000',
             'is_default_exchanger' => true,
         ]);
-
 
 
     }

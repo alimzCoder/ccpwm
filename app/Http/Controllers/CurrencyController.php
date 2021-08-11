@@ -57,7 +57,6 @@ class CurrencyController extends Controller
         ]);
 
         $inputs = $request->all();
-
         $record = UpdateCurrency::execute($id, $inputs);
 
         if ($record) {

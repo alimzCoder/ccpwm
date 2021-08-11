@@ -22,18 +22,21 @@
                     <div><input class="w-56" type="text" id="amount" name="amount" value="{{$record->amount}}" required placeholder=" amount...">
                     </div>
                 </div>
+
                 <div></div>
                 <div></div>
                 <div></div>
+
                 <div class="mt-">
                     <label for="is_active">Status</label>
-                    <div><input class="w-56" type="checkbox" id="is_active" name="is_active" required
+                    <div><input class="w-56" type="checkbox" {{$record->is_active == 1 ? 'checked' : ''}} id="is_active" name="is_active" required
                                 placeholder=" Status..."></div>
                 </div>
 
                 <div>
                     <button class="bg-green-400 text-white p-4">Save Changes</button>
                 </div>
+
             </div>
         </form>
     </div>

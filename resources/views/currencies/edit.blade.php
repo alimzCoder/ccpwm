@@ -32,8 +32,8 @@
                 <div>
                     <select name="is_default_exchanger" id="">
                         <option value="">Select Value</option>
-                        <option value="1">Default</option>
-                        <option value="0">Not Default</option>
+                        <option value="1" {{$record->is_default_exchanger ==1 ? 'selected' : ''}}>Default</option>
+                        <option value="0" {{$record->is_default_exchanger ==0 ? 'selected' : ''}}>Not Default</option>
                     </select>
                 </div>
 

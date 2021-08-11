@@ -16,27 +16,28 @@ class CurrencyController extends Controller
 
         $inputs = $request->all();
         $records = ListCurrencies::execute($inputs);
-        return view('currencies.index', compact('records'));
+        return view('dashboard.currencies.index', compact('records'));
     }
 
     public function create()
     {
-        return view('currencies.create');
+        return view('dashboard.currencies.create');
     }
 
     public function store(Request $request)
     {
 
         $request->validate([
-            'name' => 'max:15|unique:currencies',
-            'code' => 'max:3|unique:currencies',
+            'name' => 'max:15|required',
+            'code' => 'max:3|required',
+            'exchange_rate' => 'required',
         ]);
 
         $inputs = $request->all();
 
         $record = StoreCurrency::execute($inputs);
         if ($record) {
-            return redirect(route('currencies.index'));
+            return redirect(route('dashboard.currencies.index'));
         } else {
             return redirect()->back()->with('error', 'Error in creating a new record');
         }
@@ -45,16 +46,18 @@ class CurrencyController extends Controller
     public function edit($id)
     {
         $record = GetCurrency::execute($id);
-        return view('currencies.edit', compact('record'));
+        return view('dashboard.currencies.edit', compact('record'));
     }
 
     public function update(Request $request, $id)
     {
 
         $request->validate([
-            'name' => 'max:15|unique:currencies',
-            'code' => 'max:3|unique:currencies',
+            'name' => 'max:15|required',
+            'code' => 'max:3|required',
+            'exchange_rate' => 'required',
         ]);
+
 
         $inputs = $request->all();
         $record = UpdateCurrency::execute($id, $inputs);

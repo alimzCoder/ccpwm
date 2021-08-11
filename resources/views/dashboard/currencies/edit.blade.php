@@ -15,11 +15,17 @@
                 <div>
                     <label for="name">Name</label>
                     <div><input class="w-56" type="text" id="name" name="name" value="{{$record->name}}" required placeholder="Currency Name..."></div>
+                    @error('name')
+                    <div class="text-red-600 text-sm">{{$message}}</div>
+                    @enderror
                 </div>
 
                 <div class="mt-">
                     <label for="code">Code</label>
                     <div><input class="w-56" type="text" id="code" name="code" value="{{$record->code}}" required placeholder="Currency Code 3 char max..."></div>
+                    @error('code')
+                    <div class="text-red-600 text-sm">{{$message}}</div>
+                    @enderror
                 </div>
                 <div></div>
                 <div></div>
@@ -27,6 +33,9 @@
                 <div class="mt-">
                     <label for="exchange_rate">Rate</label>
                     <div><input class="w-56" type="number" id="exchange_rate" name="exchange_rate"  value="{{$record->exchange_rate}}" required placeholder="Currency Rate..."></div>
+                    @error('exchange_rate')
+                    <div class="text-red-600 text-sm">{{$message}}</div>
+                    @enderror
                 </div>
 
                 <div>

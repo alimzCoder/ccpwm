@@ -17,7 +17,7 @@ class CreateTaxesTable extends Migration
             $table->id();
             $table->string('index',20)->unique();
             $table->float('amount');
-            $table->boolean('is_active');
+            $table->boolean('is_active')->default('0');
             $table->timestamps();
         });
     }

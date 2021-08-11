@@ -16,26 +16,31 @@ class TaxesController extends Controller
 
         $inputs = $request->all();
         $records = ListTaxes::execute($inputs);
-        return view('taxes.index', compact('records'));
+        return view('dashboard.taxes.index', compact('records'));
     }
 
     public function create()
     {
-        return view('taxes.create');
+        return view('dashboard.taxes.create');
     }
 
     public function store(Request $request)
     {
 
         $request->validate([
-            'index' => 'max:20|unique:taxes',
+            'index' => 'max:20|required',
+            'amount' => 'required',
         ]);
 
         $inputs = $request->all();
 
+         if(!empty($inputs['is_active'])) {
+             $inputs['is_active'] = '1';
+         }
+
         $record = StoreTax::execute($inputs);
         if ($record) {
-            return redirect(route('taxes.index'));
+            return redirect(route('dashboard.taxes.index'));
         } else {
             return redirect()->back()->with('error', 'Error in creating a new record');
         }
@@ -44,19 +49,23 @@ class TaxesController extends Controller
     public function edit($id)
     {
         $record = GetTax::execute($id);
-        return view('taxes.edit', compact('record'));
+        return view('dashboard.taxes.edit', compact('record'));
     }
 
     public function update(Request $request, $id)
     {
 
         $request->validate([
-            'index' => 'max:20|unique:taxes',
-
+            'index' => 'max:20|required',
+            'amount' => 'required',
         ]);
 
         $inputs = $request->all();
-
+        if(!empty($inputs['is_active'])) {
+            $inputs['is_active'] = '1';
+        }else{
+            $inputs['is_active'] = '0';
+        }
         $record = UpdateTax::execute($id, $inputs);
 
         if ($record) {

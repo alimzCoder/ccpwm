@@ -7,7 +7,16 @@
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
         "prod": "npm run production",
-        "production": "mix --production"
+        "production": "mix --production",
+        "serve": "run-p css:watch html:watch html:serve",
+        "css:build": "tailwind -i src/css/tailwind.css -o public/assets/css/tailwind.css -m",
+        "css:watch": "tailwind -i src/css/tailwind.css -o public/assets/css/tailwind.css -w",
+        "html:build": "edge *.edge -r src/html -o public",
+        "html:watch": "edge *.edge -r src/html -o public -w",
+        "html:serve": "live-server ./public",
+        "format": "prettier -w public",
+        "predeploy": "run-s css:build html:build format",
+        "deploy": "gh-pages -d public"
     },
     "devDependencies": {
         "autoprefixer": "^10.3.1",

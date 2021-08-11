@@ -21,5 +21,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('currencies','App\Http\Controllers\CurrencyController');
-Route::resource('taxes','App\Http\Controllers\TaxesController');
+Route::prefix('dashboard')->group(function () {
+    Route::resource('currencies','App\Http\Controllers\CurrencyController');
+    Route::resource('taxes','App\Http\Controllers\TaxesController');
+});
+
+

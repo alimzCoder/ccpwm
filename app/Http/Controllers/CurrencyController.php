@@ -37,7 +37,7 @@ class CurrencyController extends Controller
 
         $record = StoreCurrency::execute($inputs);
         if ($record) {
-            return redirect(route('dashboard.currencies.index'));
+            return redirect(route('currencies.index'));
         } else {
             return redirect()->back()->with('error', 'Error in creating a new record');
         }

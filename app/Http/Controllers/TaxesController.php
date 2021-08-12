@@ -40,7 +40,7 @@ class TaxesController extends Controller
 
         $record = StoreTax::execute($inputs);
         if ($record) {
-            return redirect(route('dashboard.taxes.index'));
+            return redirect(route('taxes.index'));
         } else {
             return redirect()->back()->with('error', 'Error in creating a new record');
         }

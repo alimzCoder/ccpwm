@@ -3,19 +3,19 @@
  * Created by PhpStorm.
  * Author: Codeminos SARL | Hassan Zeaiter
  * Email: hassan@codeminos.io
- * Date: ١٠/٠٨/٢٠٢١
- * Time: ١٢:٤١ م
+ * Date: ١٢/٠٨/٢٠٢١
+ * Time: ١١:٢٠ ص
  */
 
-namespace App\Actions\TaxesActions;
+namespace App\Actions\WarehouseActions;
 
 
-use App\Models\Tax;
+use App\Models\Warehouse;
 
-class DestroyTax
+class DestroyWarehouseAction
 {
     public static function execute($id){
-        $record = Tax::find($id);
+        $record = Warehouse::find($id);
         return $record->delete($id);
     }
 }

@@ -3,19 +3,19 @@
  * Created by PhpStorm.
  * Author: Codeminos SARL | Hassan Zeaiter
  * Email: hassan@codeminos.io
- * Date: ١٠/٠٨/٢٠٢١
- * Time: ١٢:٤٢ م
+ * Date: ١٢/٠٨/٢٠٢١
+ * Time: ١١:٣٠ ص
  */
 
-namespace App\Actions\TaxesActions;
+namespace App\Actions\WarehouseActions;
 
 
-use App\Models\Tax;
+use App\Models\Warehouse;
 
-class UpdateTax
+class UpdateWarehouseAction
 {
     public static function execute($id,$inputs = []){
-        $record = Tax::find($id);
+        $record = Warehouse::find($id);
         return $record->update($inputs);
     }
 }

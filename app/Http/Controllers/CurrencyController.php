@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\CurrencyActions\DestroyCurrency;
-use App\Actions\CurrencyActions\GetCurrency;
-use App\Actions\CurrencyActions\ListCurrencies;
-use App\Actions\CurrencyActions\StoreCurrency;
-use App\Actions\CurrencyActions\UpdateCurrency;
+use App\Actions\CurrencyActions\DestroyCurrencyAction;
+use App\Actions\CurrencyActions\GetCurrencyAction;
+use App\Actions\CurrencyActions\ListCurrenciesAction;
+use App\Actions\CurrencyActions\StoreCurrencyAction;
+use App\Actions\CurrencyActions\UpdateCurrencyAction;
 use Illuminate\Http\Request;
 
 class CurrencyController extends Controller
@@ -15,7 +15,7 @@ class CurrencyController extends Controller
     {
 
         $inputs = $request->all();
-        $records = ListCurrencies::execute($inputs);
+        $records = ListCurrenciesAction::execute($inputs);
         return view('dashboard.currencies.index', compact('records'));
     }
 
@@ -35,7 +35,7 @@ class CurrencyController extends Controller
 
         $inputs = $request->all();
 
-        $record = StoreCurrency::execute($inputs);
+        $record = StoreCurrencyAction::execute($inputs);
         if ($record) {
             return redirect(route('currencies.index'));
         } else {
@@ -45,7 +45,7 @@ class CurrencyController extends Controller
 
     public function edit($id)
     {
-        $record = GetCurrency::execute($id);
+        $record = GetCurrencyAction::execute($id);
         return view('dashboard.currencies.edit', compact('record'));
     }
 
@@ -60,7 +60,7 @@ class CurrencyController extends Controller
 
 
         $inputs = $request->all();
-        $record = UpdateCurrency::execute($id, $inputs);
+        $record = UpdateCurrencyAction::execute($id, $inputs);
 
         if ($record) {
 
@@ -72,7 +72,7 @@ class CurrencyController extends Controller
 
     public function destroy($id)
     {
-        $record = DestroyCurrency::execute($id);
+        $record = DestroyCurrencyAction::execute($id);
         if ($record) {
             return redirect()->back()->with('success', 'Record deleted');
         } else {

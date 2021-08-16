@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\TaxesActions\DestroyTax;
-use App\Actions\TaxesActions\GetTax;
-use App\Actions\TaxesActions\ListTaxes;
-use App\Actions\TaxesActions\StoreTax;
-use App\Actions\TaxesActions\UpdateTax;
+use App\Actions\TaxesActions\DestroyTaxAction;
+use App\Actions\TaxesActions\GetTaxAction;
+use App\Actions\TaxesActions\ListTaxesAction;
+use App\Actions\TaxesActions\StoreTaxAction;
+use App\Actions\TaxesActions\UpdateTaxAction;
 use Illuminate\Http\Request;
 
 class TaxesController extends Controller
@@ -15,7 +15,7 @@ class TaxesController extends Controller
     {
 
         $inputs = $request->all();
-        $records = ListTaxes::execute($inputs);
+        $records = ListTaxesAction::execute($inputs);
         return view('dashboard.taxes.index', compact('records'));
     }
 
@@ -38,7 +38,7 @@ class TaxesController extends Controller
              $inputs['is_active'] = '1';
          }
 
-        $record = StoreTax::execute($inputs);
+        $record = StoreTaxAction::execute($inputs);
         if ($record) {
             return redirect(route('taxes.index'));
         } else {
@@ -48,7 +48,7 @@ class TaxesController extends Controller
 
     public function edit($id)
     {
-        $record = GetTax::execute($id);
+        $record = GetTaxAction::execute($id);
         return view('dashboard.taxes.edit', compact('record'));
     }
 
@@ -66,7 +66,7 @@ class TaxesController extends Controller
         }else{
             $inputs['is_active'] = '0';
         }
-        $record = UpdateTax::execute($id, $inputs);
+        $record = UpdateTaxAction::execute($id, $inputs);
 
         if ($record) {
 
@@ -78,7 +78,7 @@ class TaxesController extends Controller
 
     public function destroy($id)
     {
-        $record = DestroyTax::execute($id);
+        $record = DestroyTaxAction::execute($id);
         if ($record) {
             return redirect()->back()->with('success', 'Record deleted');
         } else {

@@ -75,25 +75,12 @@
             <ul class="p-2 overflow-hidden">
                 <li>
                     <a
-                        href="#"
+                        href="/dashboard"
                         class="flex items-center p-2 space-x-2 rounded-md hover:bg-gray-100"
                         :class="{'justify-center': !isSidebarOpen}"
                     >
                 <span>
-                  <svg
-                      class="w-6 h-6 text-gray-400"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                  >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                    />
-                  </svg>
+               <img src="https://img.icons8.com/dotty/24/000000/google-sites.png"/>
                 </span>
                         <span :class="{ 'lg:hidden': !isSidebarOpen }">Dashboard</span>
                     </a>
@@ -106,22 +93,22 @@
                         :class="{'justify-center': !isSidebarOpen}"
                     >
                 <span>
-                  <svg
-                      class="w-6 h-6 text-gray-400"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                  >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                    />
-                  </svg>
+                       <img src="https://img.icons8.com/ios/24/000000/currency-exchange.png"/>
                 </span>
                         <span :class="{ 'lg:hidden': !isSidebarOpen }">Currency</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="{{route('warehouses.index')}}"
+                        class="flex items-center p-2 space-x-2 rounded-md hover:bg-gray-100"
+                        :class="{'justify-center': !isSidebarOpen}"
+                    >
+                <span>
+                           <img src="https://img.icons8.com/dotty/24/000000/warehouse--v2.png"/>
+                </span>
+                        <span :class="{ 'lg:hidden': !isSidebarOpen }">Warehouses</span>
                     </a>
                 </li>
 
@@ -132,22 +119,22 @@
                         :class="{'justify-center': !isSidebarOpen}"
                     >
                 <span>
-                  <svg
-                      class="w-6 h-6 text-gray-400"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                  >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                    />
-                  </svg>
+                        <img src="https://img.icons8.com/wired/24/000000/tax.png"/>
                 </span>
                         <span :class="{ 'lg:hidden': !isSidebarOpen }">Tax</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href=""
+                        class="flex items-center p-2 space-x-2 rounded-md hover:bg-gray-100"
+                        :class="{'justify-center': !isSidebarOpen}"
+                    >
+                <span>
+                 <img src="https://img.icons8.com/carbon-copy/24/000000/opened-folder--v1.png"/>
+                </span>
+                        <span :class="{ 'lg:hidden': !isSidebarOpen }">Items Category</span>
                     </a>
                 </li>
                 <!-- Sidebar Links... -->
@@ -189,7 +176,13 @@
                 />
               </svg>
             </span>
-                <span :class="{'lg:hidden': !isSidebarOpen}"> Logout </span>
+                <span :class="{'lg:hidden': !isSidebarOpen}">
+                    <form action="{{route('logout')}}" method="post">
+                        @csrf
+                        <button> Logout</button>
+                    </form>
+
+                </span>
             </button>
         </div>
     </aside>
@@ -556,7 +549,7 @@
                             <img
                                 class="object-cover w-8 h-8 rounded-full"
                                 src="https://avatars0.githubusercontent.com/u/57622665?s=460&u=8f581f4c4acd4c18c33a87b3e6476112325e8b38&v=4"
-                                alt="Ahmed Kamel"
+                                alt="Ali Mahfouz"
                             />
                         </button>
                         <!-- green dot -->
@@ -581,8 +574,10 @@
                   "
                         >
                             <div class="flex flex-col p-4 space-y-1 font-medium border-b">
-                                <span class="text-gray-800">Ahmed Kamel</span>
-                                <span class="text-sm text-gray-400">ahmed.kamel@example.com</span>
+                                @if(\Illuminate\Support\Facades\Auth::check())
+                                <span class="text-gray-800">{{\Illuminate\Support\Facades\Auth::user()->name}}</span>
+                                <span class="text-sm text-gray-400">{{\Illuminate\Support\Facades\Auth::user()->email}}</span>
+                                    @endif
                             </div>
                             <ul class="flex flex-col p-2 my-2 space-y-1">
                                 <li>
@@ -594,7 +589,10 @@
                                 </li>
                             </ul>
                             <div class="flex items-center justify-center p-4 text-blue-700 underline border-t">
-                                <a href="#">Logout</a>
+                                <form action="{{route('logout')}}" method="post">
+                                    @csrf
+                                    <button>Logout</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -604,7 +602,7 @@
 
         <!-- Main content -->
         <main class="flex-1 max-h-full p-5 overflow-hidden overflow-y-scroll">
-             @yield('content')
+            @yield('content')
         </main>
         <!-- Main footer -->
         <footer class="flex items-center justify-between flex-shrink-0 p-4 border-t max-h-14">

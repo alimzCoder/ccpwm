@@ -4,7 +4,7 @@
  * Author: Codeminos SARL | Hassan Zeaiter
  * Email: hassan@codeminos.io
  * Date: ١٠/٠٨/٢٠٢١
- * Time: ١٢:٤١ م
+ * Time: ١٢:٤٢ م
  */
 
 namespace App\Actions\TaxesActions;
@@ -12,9 +12,10 @@ namespace App\Actions\TaxesActions;
 
 use App\Models\Tax;
 
-class GetTax
+class UpdateTaxAction
 {
-    public static function execute($id){
-        return Tax::find($id);
+    public static function execute($id,$inputs = []){
+        $record = Tax::find($id);
+        return $record->update($inputs);
     }
 }

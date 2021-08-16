@@ -3,19 +3,19 @@
  * Created by PhpStorm.
  * Author: Codeminos SARL | Hassan Zeaiter
  * Email: hassan@codeminos.io
- * Date: ١٠/٠٨/٢٠٢١
- * Time: ١٢:٤٢ م
+ * Date: ٠٩/٠٨/٢٠٢١
+ * Time: ٠٢:٥٦ م
  */
 
-namespace App\Actions\TaxesActions;
+namespace App\Actions\CurrencyActions;
 
 
-use App\Models\Tax;
+use App\Models\Currency;
 
-class StoreTax
+class StoreCurrencyAction
 {
     public static function execute($inputs){
         // some conditions and rules can be added
-        return Tax::create($inputs);
+        return Currency::create($inputs);
     }
 }

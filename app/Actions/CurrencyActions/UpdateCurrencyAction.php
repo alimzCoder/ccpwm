@@ -4,7 +4,7 @@
  * Author: Codeminos SARL | Hassan Zeaiter
  * Email: hassan@codeminos.io
  * Date: ٠٩/٠٨/٢٠٢١
- * Time: ٠٢:٥٧ م
+ * Time: ٠٢:٥٨ م
  */
 
 namespace App\Actions\CurrencyActions;
@@ -12,9 +12,13 @@ namespace App\Actions\CurrencyActions;
 
 use App\Models\Currency;
 
-class GetCurrency
+class UpdateCurrencyAction
 {
-      public static function execute($id){
-          return Currency::find($id);
-      }
+
+    public static function execute($id,$inputs = []){
+        $record = Currency::find($id);
+        return $record->update($inputs);
+    }
+
+
 }

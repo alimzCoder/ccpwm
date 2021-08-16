@@ -14,20 +14,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard.dashboard');
-});
+    $user = \Illuminate\Support\Facades\Auth::user();
+    return view('dashboard.dashboard',compact('user'));
+})->middleware('auth');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::prefix('dashboard')->group(function () {
-    Route::resource('currencies','App\Http\Controllers\CurrencyController');
-    Route::resource('taxes','App\Http\Controllers\TaxesController');
+    Route::resource('currencies','App\Http\Controllers\CurrencyController')->middleware('auth');
+    Route::resource('taxes','App\Http\Controllers\TaxesController')->middleware('auth');
+    Route::resource('warehouses','App\Http\Controllers\WarehousesController')->middleware('auth');
 });
 
 

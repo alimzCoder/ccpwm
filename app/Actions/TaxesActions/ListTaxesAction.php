@@ -3,26 +3,25 @@
  * Created by PhpStorm.
  * Author: Codeminos SARL | Hassan Zeaiter
  * Email: hassan@codeminos.io
- * Date: ٠٩/٠٨/٢٠٢١
- * Time: ٠٢:٥٧ م
+ * Date: ١٠/٠٨/٢٠٢١
+ * Time: ١٢:٤٢ م
  */
 
-namespace App\Actions\CurrencyActions;
+namespace App\Actions\TaxesActions;
 
 
-use App\Models\Currency;
+use App\Models\Tax;
 
-class ListCurrencies
+class ListTaxesAction
 {
     public static function execute($inputs = [])
     {
-        $records = new Currency();
+        $records = new Tax();
         if (!empty($inputs['search'])) {
-            $records = $records->where('name', 'LIKE', '%' . $inputs['search'] . '%');
+            $records = $records->where('index', 'LIKE', '%' . $inputs['search'] . '%');
         }
         $records = $records->orderBy('id','DESC');
 
         return $records->get();
     }
-
 }

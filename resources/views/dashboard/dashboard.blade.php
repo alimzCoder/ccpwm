@@ -323,8 +323,8 @@
                             </th>
                         </tr>
                         </thead>
+
                         <tbody class="bg-white divide-y divide-gray-200">
-                        <template x-for="i in 10" :key="i">
                             <tr class="transition-all hover:bg-gray-100 hover:shadow-lg">
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
@@ -336,8 +336,8 @@
                                             />
                                         </div>
                                         <div class="ml-4">
-                                            <div class="text-sm font-medium text-gray-900">Ahmed Kamel</div>
-                                            <div class="text-sm text-gray-500">ahmed.kamel@example.com</div>
+                                            <div class="text-sm font-medium text-gray-900">{{$user->name}}</div>
+                                            <div class="text-sm text-gray-500">{{$user->email}}</div>
                                         </div>
                                     </div>
                                 </td>
@@ -361,12 +361,12 @@
                                   Active
                                 </span>
                                 </td>
-                                <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">Admin</td>
+                                <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">{{$user->role == 'super admin' ? 'Super Admin' : ''}}</td>
                                 <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                                     <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                                 </td>
                             </tr>
-                        </template>
+
                         </tbody>
                     </table>
                 </div>

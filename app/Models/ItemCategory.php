@@ -9,4 +9,9 @@ class ItemCategory extends Model
 {
     use HasFactory;
     protected $fillable = ['name','parent_id','status_id'];
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class,'status_id');
+    }
 }

@@ -36,8 +36,9 @@
                 <div>
                     <select name="status_id" id="">
                         <option value="">Status</option>
-                        <option value="4">Status 1</option>
-                        <option value="3">Status 2</option>
+                        @foreach($statuses as $status)
+                        <option value="{{$status->id}}">{{$status->name}}</option>
+                        @endforeach
                     </select>
                 </div>
 

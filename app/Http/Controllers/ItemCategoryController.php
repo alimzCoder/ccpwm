@@ -7,10 +7,12 @@ use App\Actions\ItemCategoryActions\GetItemCategoryAction;
 use App\Actions\ItemCategoryActions\ListItemsCategoryAction;
 use App\Actions\ItemCategoryActions\StoreItemCategoryAction;
 use App\Actions\ItemCategoryActions\UpdateItemCategoryAction;
+use App\Actions\StatusActions\ListStatusesAction;
 use Illuminate\Http\Request;
 
 class ItemCategoryController extends Controller
 {
+
     public function index(Request $request)
     {
 
@@ -19,11 +21,13 @@ class ItemCategoryController extends Controller
         return view('dashboard.itemsCategory.index', compact('records'));
     }
 
+
     public function create(Request $request)
     {
         $inputs = $request->all();
+        $statuses = ListStatusesAction::execute($inputs);
         $categories = ListItemsCategoryAction::execute($inputs);
-        return view('dashboard.itemsCategory.create',compact('categories'));
+        return view('dashboard.itemsCategory.create',compact('categories','statuses'));
     }
 
 
@@ -49,7 +53,8 @@ class ItemCategoryController extends Controller
         $inputs = $request->all();
         $record = GetItemCategoryAction::execute($id);
         $categories = ListItemsCategoryAction::execute($inputs);
-        return view('dashboard.itemsCategory.edit', compact('record','categories'));
+        $statuses = ListStatusesAction::execute($inputs);
+        return view('dashboard.itemsCategory.edit', compact('record','categories','statuses'));
     }
 
 

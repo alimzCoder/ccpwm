@@ -5,7 +5,7 @@
 
     <div class="container m-4">
 
-        <span class="text-lg font-medium border-b">Create</span>
+        <span class="text-lg font-medium border-b">Edit {{$record->name}} Category</span>
         <form action="{{route('items_category.update',$record->id)}}" method="POST">
             @csrf
             @method('PUT')
@@ -39,8 +39,10 @@
                 <div>
                     <select name="status_id" id="">
                         <option value="">Status</option>
-                        <option value="4">Status 1</option>
-                        <option value="3">Status 2</option>
+                        @foreach($statuses as $status)
+                            <option
+                                value="{{$status->id}}" {{$record->status_id == $status->id ?'selected' : '' }}>{{$status->name}}</option>
+                        @endforeach
                     </select>
                 </div>
 

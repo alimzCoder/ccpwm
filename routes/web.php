@@ -30,6 +30,7 @@ Route::prefix('dashboard')->group(function () {
     Route::resource('currencies','App\Http\Controllers\CurrencyController')->middleware('auth');
     Route::resource('taxes','App\Http\Controllers\TaxesController')->middleware('auth');
     Route::resource('warehouses','App\Http\Controllers\WarehousesController')->middleware('auth');
+    Route::resource('items_category','App\Http\Controllers\ItemCategoryController')->middleware('auth');
 });
 
 

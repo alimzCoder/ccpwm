@@ -2,7 +2,8 @@
 
 @section('content')
 
-    <h3 class="mt-6 text-xl">Currencies</h3>
+
+    <h3 class="mt-6 text-xl">Items Category</h3>
     <div class="flex flex-col mt-6">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
@@ -20,26 +21,26 @@
                                 scope="col"
                                 class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
                             >
-                                Code
+                                has Parent
                             </th>
                             <th
                                 scope="col"
                                 class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
                             >
-                                Exchange Rate
+                              Status
                             </th>
 
                             <th
                                 scope="col"
                                 class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
                             >
-                                Status
+                                Created @
                             </th>
                             <th
                                 scope="col"
                                 class="px-6 flex justify-end py-3 text-xs font-medium tracking-wider text-left text-blue-500 uppercase"
                             >
-                                <a class="ml-" href="{{route('currencies.create')}}">create</a>
+                                <a class="ml-" href="{{route('items_category.create')}}">create</a>
                             </th>
                             <th scope="col" class="relative px-6 py-3">
                                 <span class="sr-only">Edit</span>
@@ -57,7 +58,7 @@
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">{{$record->code}}</div>
+                                    <div class="text-sm text-gray-900">{{$record->parent_id}}</div>
                                     <div
                                         class="text-sm text-gray-500"></div>
                                 </td>
@@ -74,10 +75,10 @@
                                     rounded-full
                                   "
                                 >
-                                  {{$record->exchange_rate}}
+                                  {{$record->status_id}}
                                 </span>
                                 </td>
-                                <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">{{$record->is_default_exchanger == 1 ? 'Default' : 'Not Default'}}</td>
+                                <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">{{$record->created_at}}</td>
 
                                 <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                                     <a class="text-purple-400 hover:text-purple-900"

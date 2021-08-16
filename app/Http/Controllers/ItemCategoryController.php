@@ -19,9 +19,11 @@ class ItemCategoryController extends Controller
         return view('dashboard.itemsCategory.index', compact('records'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return view('dashboard.itemsCategory.create');
+        $inputs = $request->all();
+        $categories = ListItemsCategoryAction::execute($inputs);
+        return view('dashboard.itemsCategory.create',compact('categories'));
     }
 
 
@@ -42,10 +44,12 @@ class ItemCategoryController extends Controller
         }
     }
 
-    public function edit($id)
+    public function edit(Request $request,$id)
     {
+        $inputs = $request->all();
         $record = GetItemCategoryAction::execute($id);
-        return view('dashboard.itemsCategory.edit', compact('record'));
+        $categories = ListItemsCategoryAction::execute($inputs);
+        return view('dashboard.itemsCategory.edit', compact('record','categories'));
     }
 
 

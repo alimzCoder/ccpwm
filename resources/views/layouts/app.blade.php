@@ -56,7 +56,7 @@
         <!-- sidebar header -->
         <div class="flex items-center justify-between flex-shrink-0 p-2" :class="{'lg:justify-center': !isSidebarOpen}">
           <span class="p-2 text-xl font-semibold leading-8 tracking-wider uppercase whitespace-nowrap">
-            K<span :class="{'lg:hidden': !isSidebarOpen}">-WD</span>
+            POS
           </span>
             <button @click="toggleSidbarMenu()" class="p-2 rounded-md lg:hidden">
                 <svg
@@ -127,7 +127,7 @@
 
                 <li>
                     <a
-                        href=""
+                        href="{{route('items_category.index')}}"
                         class="flex items-center p-2 space-x-2 rounded-md hover:bg-gray-100"
                         :class="{'justify-center': !isSidebarOpen}"
                     >

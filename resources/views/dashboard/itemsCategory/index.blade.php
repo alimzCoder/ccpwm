@@ -58,7 +58,7 @@
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">{{$record->parent_id}}</div>
+                                    <div class="text-sm text-gray-900">{{$record->parent_id == null ? 'null' : \App\Models\ItemCategory::find($record->parent_id)->name}}</div>
                                     <div
                                         class="text-sm text-gray-500"></div>
                                 </td>
@@ -75,17 +75,17 @@
                                     rounded-full
                                   "
                                 >
-                                  {{$record->status_id}}
+                                  {{$record->status_id == null ? 'null' : 'Active'}}
                                 </span>
                                 </td>
                                 <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">{{$record->created_at}}</td>
 
                                 <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                                     <a class="text-purple-400 hover:text-purple-900"
-                                       href="{{route('currencies.edit',$record->id)}}">edit</a>
+                                       href="{{route('items_category.edit',$record->id)}}">edit</a>
                                 </td>
                                 <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                                    <form action="{{route('currencies.destroy',$record->id)}}" method="POST">
+                                    <form action="{{route('items_category.destroy',$record->id)}}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button class="text-red-600 hover:text-red-700">Delete</button>

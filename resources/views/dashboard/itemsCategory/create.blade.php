@@ -34,7 +34,7 @@
                 </div>
 
                 <div>
-                    <select name="status_id" id="">
+                    <select class="w-full" name="status_id" id="">
                         <option value="">Status</option>
                         @foreach($statuses as $status)
                         <option value="{{$status->id}}">{{$status->name}}</option>

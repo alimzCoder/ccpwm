@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actions\StatusActions\DestroyStatusAction;
+use App\Actions\StatusActions\GetStatusAction;
 use App\Actions\StatusActions\ListStatusesAction;
 use App\Actions\StatusActions\StoreStatusAction;
 use App\Actions\StatusActions\UpdateStatusAction;
@@ -48,7 +49,8 @@ class StatusController extends Controller
 
     public function edit($id)
     {
-        return view('dashboard.statuses.edit');
+        $record = GetStatusAction::execute($id);
+        return view('dashboard.statuses.edit',compact('record'));
     }
 
     public function update(Request $request, $id)

@@ -27,10 +27,11 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::prefix('dashboard')->group(function () {
-    Route::resource('currencies','App\Http\Controllers\CurrencyController')->middleware('auth');
-    Route::resource('taxes','App\Http\Controllers\TaxesController')->middleware('auth');
-    Route::resource('warehouses','App\Http\Controllers\WarehousesController')->middleware('auth');
-    Route::resource('items_category','App\Http\Controllers\ItemCategoryController')->middleware('auth');
+    Route::resource('currencies','CurrencyController')->middleware('auth');
+    Route::resource('taxes','TaxesController')->middleware('auth');
+    Route::resource('warehouses','WarehousesController')->middleware('auth');
+    Route::resource('items_category','ItemCategoryController')->middleware('auth');
+    Route::resource('statuses','StatusController')->middleware('auth');
 });
 
 

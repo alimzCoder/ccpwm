@@ -1874,6 +1874,15 @@ img,video{
   }
 }
 
+input{
+  border-radius:.5rem;
+  padding:1rem;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  height: 2.5rem;
+  border: solid 2px gray;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

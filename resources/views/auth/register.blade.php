@@ -1,7 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
-    <div class="container">
         <div class="text-center text-2xl">Register</div>
         <div class="grid grid-cols-1 mt-10">
         <form class="mx-auto" method="POST" action="{{ route('register') }}">
@@ -85,7 +84,6 @@
         </form>
         </div>
 
-    </div>
 
 
 @endsection

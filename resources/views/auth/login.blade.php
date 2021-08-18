@@ -1,7 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
-        <div class="container">
             <div class="text-center text-2xl">Log In</div>
 
             <div class="grid grid-cols-1 mt-10">
@@ -63,5 +62,4 @@
                 </form>
 
             </div>
-        </div>
 @endsection

@@ -7,6 +7,7 @@ use App\Actions\StatusActions\GetStatusAction;
 use App\Actions\StatusActions\ListStatusesAction;
 use App\Actions\StatusActions\StoreStatusAction;
 use App\Actions\StatusActions\UpdateStatusAction;
+use App\Models\Status;
 use Illuminate\Http\Request;
 
 class StatusController extends Controller
@@ -50,7 +51,7 @@ class StatusController extends Controller
     public function edit($id)
     {
         $record = GetStatusAction::execute($id);
-        return view('dashboard.statuses.edit',compact('record'));
+        return view('dashboard.statuses.edit', compact('record'));
     }
 
     public function update(Request $request, $id)
@@ -76,11 +77,13 @@ class StatusController extends Controller
 
     public function destroy($id)
     {
-        $record = DestroyStatusAction::execute($id);
-        if ($record) {
-            return redirect()->back()->with('success', 'Record deleted');
-        } else {
+        $record = Status::find($id);
+        if($record->itemCategories()->exists()){
             return redirect()->back()->with('error', 'Error in deleting a record');
+        }else{
+            $record = DestroyStatusAction::execute($id);
+            return redirect()->back()->with('success', 'Record deleted');
         }
+
     }
 }

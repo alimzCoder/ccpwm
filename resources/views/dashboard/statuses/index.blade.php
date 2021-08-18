@@ -10,6 +10,11 @@
                 <div class="overflow-hidden border-b border-gray-200 rounded-md shadow-md">
                     <table class="min-w-full overflow-x-scroll divide-y divide-gray-200">
                         <thead class="bg-gray-50">
+                        @if(\Illuminate\Support\Facades\Session::has('error'))
+                        <tr class="">
+                            <span class="text-sm text-red-500">Cannot Delete Related Status</span>
+                        </tr>
+                        @endif
                         <tr>
                             <th
                                 scope="col"

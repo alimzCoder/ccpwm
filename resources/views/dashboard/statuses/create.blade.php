@@ -6,7 +6,7 @@
     <div class="container m-4">
 
         <span class="text-lg font-medium border-b">Create</span>
-        <form action="{{route('items_category.store')}}" method="POST">
+        <form action="{{route('statuses.store')}}" method="POST">
             @csrf
             @method('POST')
 

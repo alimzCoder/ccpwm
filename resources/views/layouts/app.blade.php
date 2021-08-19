@@ -73,6 +73,7 @@
         <!-- Sidebar links -->
         <nav class="flex-1 overflow-hidden hover:overflow-y-auto">
             <ul class="p-2 overflow-hidden">
+                <span class="text-sm border-b">Directory</span>
                 <li>
                     <a
                         href="/dashboard"
@@ -98,7 +99,7 @@
                         <span :class="{ 'lg:hidden': !isSidebarOpen }">Currency</span>
                     </a>
                 </li>
-
+                <span class="text-sm border-b">Warehouses</span>
                 <li>
                     <a
                         href="{{route('warehouses.index')}}"
@@ -111,7 +112,19 @@
                         <span :class="{ 'lg:hidden': !isSidebarOpen }">Warehouses</span>
                     </a>
                 </li>
-
+                <li>
+                    <a
+                        href="{{route('items.index')}}"
+                        class="flex items-center p-2 space-x-2 rounded-md hover:bg-gray-100"
+                        :class="{'justify-center': !isSidebarOpen}"
+                    >
+                <span>
+                <img src="https://img.icons8.com/ios/24/000000/add-shopping-cart--v1.png"/>
+                </span>
+                        <span :class="{ 'lg:hidden': !isSidebarOpen }">Items</span>
+                    </a>
+                </li>
+                <span class="text-sm border-b">Administration</span>
                 <li>
                     <a
                         href="{{route('taxes.index')}}"
@@ -151,18 +164,7 @@
                     </a>
                 </li>
 
-                <li>
-                    <a
-                        href="{{route('items.index')}}"
-                        class="flex items-center p-2 space-x-2 rounded-md hover:bg-gray-100"
-                        :class="{'justify-center': !isSidebarOpen}"
-                    >
-                <span>
-                <img src="https://img.icons8.com/ios/24/000000/add-shopping-cart--v1.png"/>
-                </span>
-                        <span :class="{ 'lg:hidden': !isSidebarOpen }">Items</span>
-                    </a>
-                </li>
+
                 <!-- Sidebar Links... -->
             </ul>
         </nav>

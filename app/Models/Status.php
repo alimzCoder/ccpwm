@@ -12,6 +12,11 @@ class Status extends Model
     protected $fillable = ['name','value','model','text_color','bg_color'];
     public function itemCategories()
     {
-        return $this->hasMany(ItemCategory::class);
+         $this->hasMany(ItemCategory::class);
+    }
+
+    public function items()
+    {
+         $this->hasMany(Item::class);
     }
 }

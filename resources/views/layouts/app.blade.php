@@ -150,6 +150,19 @@
                         <span :class="{ 'lg:hidden': !isSidebarOpen }">Statuses</span>
                     </a>
                 </li>
+
+                <li>
+                    <a
+                        href="{{route('items.index')}}"
+                        class="flex items-center p-2 space-x-2 rounded-md hover:bg-gray-100"
+                        :class="{'justify-center': !isSidebarOpen}"
+                    >
+                <span>
+                <img src="https://img.icons8.com/ios/24/000000/add-shopping-cart--v1.png"/>
+                </span>
+                        <span :class="{ 'lg:hidden': !isSidebarOpen }">Items</span>
+                    </a>
+                </li>
                 <!-- Sidebar Links... -->
             </ul>
         </nav>

@@ -14,4 +14,9 @@ class ItemCategory extends Model
     {
         return $this->belongsTo(Status::class,'status_id');
     }
+
+    public function items()
+    {
+       return $this->belongsToMany(Item::class,'items_categories');
+    }
 }

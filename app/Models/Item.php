@@ -25,4 +25,8 @@ class Item extends Model
        return $this->belongsTo(Status::class,'status_id');
     }
 
+    public function manufacturer(){
+        return $this->belongsTo(Manufacturer::class,'manufacturer_id');
+    }
+
 }

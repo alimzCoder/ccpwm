@@ -25,6 +25,7 @@ Route::get('/dashboard', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/export','ItemsController@export')->middleware('auth');
 
 Route::prefix('dashboard')->group(function () {
     Route::resource('currencies','CurrencyController')->middleware('auth');

@@ -9,12 +9,16 @@ use App\Actions\ItemActions\StoreItemAction;
 use App\Actions\ItemActions\UpdateItemAction;
 use App\Actions\ItemCategoryActions\GetItemCategoryAction;
 use App\Actions\ItemCategoryActions\ListItemsCategoryAction;
+use App\Actions\ManufacturerAction\ListManAction;
 use App\Actions\StatusActions\ListStatusesAction;
 use App\Actions\UtilsActions\DeleteMediaAction;
 use App\Actions\UtilsActions\StoreMediaAction;
+use App\Exports\ItemsExport;
 use App\Models\Item;
 use App\Models\ItemCategory;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use PhpOffice\PhpSpreadsheet\Writer\Exception;
 
 class ItemsController extends Controller
 {
@@ -23,9 +27,6 @@ class ItemsController extends Controller
 
         $inputs = $request->all();;
         $records = ListItemsAction::execute($inputs);
-//        return $cat = Item::find(2);
-//        return  $records[0]->categories;
-
         return view('dashboard.items.index', compact('records'));
     }
 
@@ -33,8 +34,9 @@ class ItemsController extends Controller
     {
         $inputs = $request->all();
         $statuses = ListStatusesAction::execute($inputs);
+        $manufacturers = ListManAction::execute($inputs);
         $categories = ListItemsCategoryAction::execute($inputs);
-        return view('dashboard.items.create', compact('categories', 'statuses'));
+        return view('dashboard.items.create', compact('categories', 'statuses','manufacturers'));
     }
 
     public function store(Request $request)
@@ -69,7 +71,8 @@ class ItemsController extends Controller
         $record = GetItemAction::execute($id);
         $categories = ListItemsCategoryAction::execute($inputs);
         $statuses = ListStatusesAction::execute($inputs);
-        return view('dashboard.items.edit', compact('record', 'categories', 'statuses'));
+        $manufacturers = ListManAction::execute($inputs);
+        return view('dashboard.items.edit', compact('record', 'categories', 'statuses','manufacturers'));
     }
 
 
@@ -78,7 +81,6 @@ class ItemsController extends Controller
 
         $request->validate([
             'name' => 'required',
-            'image_url' => 'required',
             'status_id' => 'required',
             'manufacturer_id' => 'required',
         ]);
@@ -92,9 +94,9 @@ class ItemsController extends Controller
         if ($request->has('image_url')) {
             $imageToBeDeleted = DeleteMediaAction::execute($id);
         }
-
+        $item = GetItemAction::execute($id);
+        $item->categories()->sync($inputs['categories']);
         $record = UpdateItemAction::execute($id, $inputs);
-
         if ($record) {
             return redirect()->back()->with('success', 'Record updated successfully');
         }
@@ -112,5 +114,11 @@ class ItemsController extends Controller
             return redirect()->back()->with('error', 'Error in deleting a record');
         }
     }
+
+    public function export(){
+        return Excel::download(new ItemsExport, 'items.xlsx');
+
+    }
+
 
 }

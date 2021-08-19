@@ -41,10 +41,14 @@
                                 class="px-6 flex justify-end py-3 text-xs font-medium tracking-wider text-left text-blue-500 uppercase"
                             >
                                 <a class="ml-" href="{{route('items.create')}}">create</a>
+                                <a class="text-purple-400 hover:text-purple-900 ml-10"
+                                   href="/export">export all</a>
                             </th>
-                            <th scope="col" class="relative px-6 py-3">
-                                <span class="sr-only">Edit</span>
+                            <th>
+
                             </th>
+                            <th></th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
@@ -52,7 +56,14 @@
                             <tr class="transition-all hover:bg-gray-100 hover:shadow-lg">
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
-                                        <div class="">
+                                        <div class="flex-shrink-0 w-10 h-10">
+                                            <img
+                                                class="w-10 h-10 rounded-full"
+                                                src="/uploads/{{$record->image_url}}"
+                                                alt=""
+                                            />
+                                        </div>
+                                        <div class="ml-4">
                                             <div class="text-sm font-medium text-gray-900">{{$record->name}}</div>
                                         </div>
                                     </div>
@@ -77,14 +88,14 @@
                                 >
                                     <div class="flex items-center justify-center gap-4">
                                         @foreach($record->categories as $category)
-                                           <span>{{$category->name}}</span>
+                                            <span>{{$category->name}}</span>
                                         @endforeach
                                     </div>
 
 
                                 </span>
                                 </td>
-                                <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">{{$record->manufacturer}}</td>
+                                <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">{{$record->manufacturer->name}}</td>
 
                                 <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                                     <a class="text-purple-400 hover:text-purple-900"

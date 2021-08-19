@@ -17,9 +17,10 @@ button,select{text-transform:none}[type=button],[type=reset],[type=submit],butto
 
 
 input{
-    @apply rounded-lg p-4;
-    height: 2.5rem;
-    border: solid 2px gray;
+    @apply rounded-lg p-4 h-12 border border-gray-200 ;
+}
+select{
+    @apply border border-gray-200 w-44 h-12;
 }
 @tailwind utilities;
 

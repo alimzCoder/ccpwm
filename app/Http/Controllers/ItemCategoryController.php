@@ -78,6 +78,7 @@ class ItemCategoryController extends Controller
     public function destroy($id)
     {
         $record = DestroyItemCategoryAction::execute($id);
+
         if ($record) {
             return redirect()->back()->with('success', 'Record deleted');
         } else {

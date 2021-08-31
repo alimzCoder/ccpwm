@@ -10,7 +10,12 @@
 namespace App\Actions\ManufacturerAction;
 
 
+use App\Models\Manufacturer;
+
 class UpdateManAction
 {
-
+    public static function execute($id,$inputs = []){
+        $record = Manufacturer::find($id);
+        return $record->update($inputs);
+    }
 }

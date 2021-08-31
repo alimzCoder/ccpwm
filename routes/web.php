@@ -34,6 +34,9 @@ Route::prefix('dashboard')->group(function () {
     Route::resource('items_category','ItemCategoryController')->middleware('auth');
     Route::resource('statuses','StatusController')->middleware('auth');
     Route::resource('items','ItemsController')->middleware('auth');
+    Route::resource('manufacturers','ManufacturersController')->middleware('auth');
 });
+
+
 
 

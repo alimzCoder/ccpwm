@@ -2,7 +2,8 @@
 
 @section('content')
 
-    <h3 class="mt-6 text-xl">Warehouses</h3>
+
+    <h3 class="mt-6 text-xl">[<span class="text-xl font-medium">{{$record->name}}</span>] Warehouse items</h3>
     <div class="flex flex-col mt-6">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
@@ -27,7 +28,7 @@
                       />
                     </svg>
                   </span>
-                            <form action="{{route('warehouses.index')}}" method="GET" autocomplete="off" autofill="off">
+                            <form action="{{route('items.index')}}" method="GET" autocomplete="off" autofill="off">
                                 <input
                                     name="search"
                                     type="text"
@@ -48,44 +49,55 @@
                                 scope="col"
                                 class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
                             >
-                                Address
+                                status
                             </th>
                             <th
                                 scope="col"
                                 class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
                             >
-                                Created @
+                                categories
                             </th>
 
                             <th
                                 scope="col"
                                 class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
                             >
-                                Last update
+                                manufacturer
                             </th>
                             <th
                                 scope="col"
                                 class="px-6 flex justify-end py-3 text-xs font-medium tracking-wider text-left text-blue-500 uppercase"
                             >
-                                <a class="ml-" href="{{route('warehouses.create')}}">create</a>
+                                <a class="ml-" href="{{route('items.create')}}">create</a>
+                                <a class="text-purple-400 hover:text-purple-900 ml-10"
+                                   href="/export">export all</a>
                             </th>
-                            <th scope="col" class="relative px-6 py-3">
-                                <span class="sr-only">Edit</span>
+                            <th>
+
                             </th>
+                            <th></th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                        @foreach($records as $record)
+                        @foreach($record->items as $item)
                             <tr class="transition-all hover:bg-gray-100 hover:shadow-lg">
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
-                                        <div class="">
-                                            <div class="text-sm font-medium text-gray-900"><a href="{{route('warehouses.show',$record->id)}}">{{$record->name}}</a></div>
+                                        <div class="flex-shrink-0 w-10 h-10">
+                                            <img
+                                                class="w-10 h-10 rounded-full"
+                                                src="/uploads/{{$item->image_url}}"
+                                                alt=""
+                                            />
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900">{{$item->name}}</div>
                                         </div>
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">{{$record->address}}</div>
+                                    <div class="text-sm text-gray-900">{{$item->status->name}}</div>
                                     <div
                                         class="text-sm text-gray-500"></div>
                                 </td>
@@ -102,17 +114,23 @@
                                     rounded-full
                                   "
                                 >
-                                  {{$record->created_at}}
+                                    <div class="flex items-center justify-center gap-4">
+                                        @foreach($item->categories as $category)
+                                            <span>{{$category->name}}</span>
+                                        @endforeach
+                                    </div>
+
+
                                 </span>
                                 </td>
-                                <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">{{$record->updated_at}}</td>
+                                <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">{{$item->manufacturer->name}}</td>
 
                                 <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                                     <a class="text-purple-400 hover:text-purple-900"
-                                       href="{{route('warehouses.edit',$record->id)}}">edit</a>
+                                       href="{{route('items.edit',$item->id)}}">edit</a>
                                 </td>
                                 <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                                    <form action="{{route('warehouses.destroy',$record->id)}}" method="POST">
+                                    <form action="{{route('items.destroy',$item->id)}}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button class="text-red-600 hover:text-red-700">Delete</button>

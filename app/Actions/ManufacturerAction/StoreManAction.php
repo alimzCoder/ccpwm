@@ -10,7 +10,12 @@
 namespace App\Actions\ManufacturerAction;
 
 
+use App\Models\Manufacturer;
+
 class StoreManAction
 {
-
+    public static function execute($inputs){
+        // some conditions and rules can be added
+        return Manufacturer::create($inputs);
+    }
 }

@@ -10,7 +10,11 @@
 namespace App\Actions\ManufacturerAction;
 
 
+use App\Models\Manufacturer;
+
 class GetManAction
 {
-
+    public static function execute($id){
+        return Manufacturer::find($id);
+    }
 }

@@ -164,6 +164,19 @@
                     </a>
                 </li>
 
+                <li>
+                    <a
+                        href="{{route('manufacturers.index')}}"
+                        class="flex items-center p-2 space-x-2 rounded-md hover:bg-gray-100"
+                        :class="{'justify-center': !isSidebarOpen}"
+                    >
+                <span>
+              <img src="https://img.icons8.com/ios/24/000000/recycling.png"/>
+                </span>
+                        <span :class="{ 'lg:hidden': !isSidebarOpen }">Manufacturers</span>
+                    </a>
+                </li>
+
 
                 <!-- Sidebar Links... -->
             </ul>
@@ -288,38 +301,38 @@
                 </div>
 
                 <!-- Desktop search box -->
-                <div class="items-center hidden px-2 space-x-2 md:flex-1 md:flex md:mr-auto md:ml-5">
-                    <!-- search icon -->
-                    <svg
-                        class="w-5 h-5 text-gray-500"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                        />
-                    </svg>
+{{--                <div class="items-center hidden px-2 space-x-2 md:flex-1 md:flex md:mr-auto md:ml-5">--}}
+{{--                    <!-- search icon -->--}}
+{{--                    <svg--}}
+{{--                        class="w-5 h-5 text-gray-500"--}}
+{{--                        xmlns="http://www.w3.org/2000/svg"--}}
+{{--                        fill="none"--}}
+{{--                        viewBox="0 0 24 24"--}}
+{{--                        stroke="currentColor"--}}
+{{--                    >--}}
+{{--                        <path--}}
+{{--                            stroke-linecap="round"--}}
+{{--                            stroke-linejoin="round"--}}
+{{--                            stroke-width="2"--}}
+{{--                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"--}}
+{{--                        />--}}
+{{--                    </svg>--}}
 
-                    <input
-                        type="text"
-                        placeholder="Search"
-                        class="
-                  px-4
-                  py-3
-                  rounded-md
-                  hover:bg-gray-100
-                  lg:max-w-sm
-                  md:py-2 md:flex-1
-                  focus:outline-none
-                  md:focus:bg-gray-100 md:focus:shadow md:focus:border
-                "
-                    />
-                </div>
+{{--                    <input--}}
+{{--                        type="text"--}}
+{{--                        placeholder="Search"--}}
+{{--                        class="--}}
+{{--                  px-4--}}
+{{--                  py-3--}}
+{{--                  rounded-md--}}
+{{--                  hover:bg-gray-100--}}
+{{--                  lg:max-w-sm--}}
+{{--                  md:py-2 md:flex-1--}}
+{{--                  focus:outline-none--}}
+{{--                  md:focus:bg-gray-100 md:focus:shadow md:focus:border--}}
+{{--                "--}}
+{{--                    />--}}
+{{--                </div>--}}
 
                 <!-- Navbar right -->
                 <div class="relative flex items-center space-x-3">
@@ -634,17 +647,17 @@
         </main>
         <!-- Main footer -->
         <footer class="flex items-center justify-between flex-shrink-0 p-4 border-t max-h-14">
-            <div>K-WD &copy; 2020</div>
-            <div class="text-sm">
-                Made by
-                <a
-                    class="text-blue-400 underline"
-                    href="https://github.com/Kamona-WD"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >Ahmed Kamel</a
-                >
-            </div>
+            <div>Candy Cave &copy; 2021</div>
+{{--            <div class="text-sm">--}}
+{{--                Made by--}}
+{{--                <a--}}
+{{--                    class="text-blue-400 underline"--}}
+{{--                    href="https://github.com/Kamona-WD"--}}
+{{--                    target="_blank"--}}
+{{--                    rel="noopener noreferrer"--}}
+{{--                >Ahmed Kamel</a--}}
+{{--                >--}}
+{{--            </div>--}}
             <div>
                 <!-- Github svg -->
                 <a

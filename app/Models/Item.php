@@ -20,6 +20,11 @@ class Item extends Model
       return $this->belongsToMany(ItemCategory::class, 'items_categories', 'item_id', 'category_id');
     }
 
+    public function warehouse()
+    {
+        return $this->belongsToMany(Warehouse::class, 'items_warehouses', 'item_id', 'warehouse_id');
+    }
+
     public function status()
     {
        return $this->belongsTo(Status::class,'status_id');

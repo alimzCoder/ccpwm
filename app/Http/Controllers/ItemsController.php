@@ -36,7 +36,7 @@ class ItemsController extends Controller
         $statuses = ListStatusesAction::execute($inputs);
         $manufacturers = ListManAction::execute($inputs);
         $categories = ListItemsCategoryAction::execute($inputs);
-        return view('dashboard.items.create', compact('categories', 'statuses','manufacturers'));
+        return view('dashboard.items.create', compact('categories', 'statuses', 'manufacturers'));
     }
 
     public function store(Request $request)
@@ -44,8 +44,6 @@ class ItemsController extends Controller
         $request->validate([
             'name' => 'required',
             'image_url' => 'required',
-            'status_id' => 'required',
-            'manufacturer_id' => 'required',
         ]);
 
         $inputs = $request->all();
@@ -55,8 +53,9 @@ class ItemsController extends Controller
         }
 
         $record = StoreItemAction::execute($inputs);
-
-        $record->categories()->sync($inputs['categories']);
+        if (!empty($inputs['categories'])) {
+                $record->categories()->sync($inputs['categories']);
+        }
         if ($record) {
             return redirect(route('items.index'));
         } else {
@@ -65,6 +64,7 @@ class ItemsController extends Controller
 
     }
 
+
     public function edit(Request $request, $id)
     {
         $inputs = $request->all();
@@ -72,7 +72,7 @@ class ItemsController extends Controller
         $categories = ListItemsCategoryAction::execute($inputs);
         $statuses = ListStatusesAction::execute($inputs);
         $manufacturers = ListManAction::execute($inputs);
-        return view('dashboard.items.edit', compact('record', 'categories', 'statuses','manufacturers'));
+        return view('dashboard.items.edit', compact('record', 'categories', 'statuses', 'manufacturers'));
     }
 
 
@@ -81,8 +81,8 @@ class ItemsController extends Controller
 
         $request->validate([
             'name' => 'required',
-            'status_id' => 'required',
-            'manufacturer_id' => 'required',
+//            'status_id' => 'required',
+//            'manufacturer_id' => 'required',
         ]);
 
 
@@ -95,30 +95,32 @@ class ItemsController extends Controller
             $imageToBeDeleted = DeleteMediaAction::execute($id);
         }
         $item = GetItemAction::execute($id);
-        $item->categories()->sync($inputs['categories']);
-        $record = UpdateItemAction::execute($id, $inputs);
-        if ($record) {
-            return redirect()->back()->with('success', 'Record updated successfully');
+        if (!empty($inputs['categories'])) {
+            $item->categories()->sync($inputs['categories']);
         }
-        return redirect()->back()->with('error', 'Error in updating a record');
-    }
-
-
-    public function destroy($id)
-    {
-        $imageToBeDeleted = DeleteMediaAction::execute($id);
-        $record = DestroyItemAction::execute($id);
-        if ($record) {
-            return redirect()->back()->with('success', 'Record deleted');
-        } else {
-            return redirect()->back()->with('error', 'Error in deleting a record');
+            $record = UpdateItemAction::execute($id, $inputs);
+            if ($record) {
+                return redirect()->back()->with('success', 'Record updated successfully');
+            }
+            return redirect()->back()->with('error', 'Error in updating a record');
         }
+
+
+        public function destroy($id)
+        {
+            $imageToBeDeleted = DeleteMediaAction::execute($id);
+            $record = DestroyItemAction::execute($id);
+            if ($record) {
+                return redirect()->back()->with('success', 'Record deleted');
+            } else {
+                return redirect()->back()->with('error', 'Error in deleting a record');
+            }
+        }
+
+        public function export()
+        {
+            return Excel::download(new ItemsExport, 'items.xlsx');
+        }
+
+
     }
-
-    public function export(){
-        return Excel::download(new ItemsExport, 'items.xlsx');
-
-    }
-
-
-}

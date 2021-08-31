@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\ItemActions\GetItemAction;
+use App\Actions\ItemActions\ListItemsAction;
 use App\Actions\WarehouseActions\DestroyWarehouseAction;
 use App\Actions\WarehouseActions\GetWarehouseAction;
 use App\Actions\WarehouseActions\ListWarehousesAction;
@@ -11,6 +13,13 @@ use Illuminate\Http\Request;
 
 class WarehousesController extends Controller
 {
+    public function show(Request $request, $id)
+    {
+        $inputs = $request->all();
+        $record = GetWarehouseAction::execute($id);
+        return view('dashboard.warehouses.show', compact('record'));
+    }
+
     public function index(Request $request)
     {
         $inputs = $request->all();
@@ -19,9 +28,11 @@ class WarehousesController extends Controller
     }
 
 
-    public function create()
+    public function create(Request $request)
     {
-        return view('dashboard.warehouses.create');
+        $inputs = $request->all();
+        $items = ListItemsAction::execute($inputs);
+        return view('dashboard.warehouses.create', compact('items'));
     }
 
 
@@ -34,8 +45,10 @@ class WarehousesController extends Controller
         ]);
 
         $inputs = $request->all();
-
         $record = StoreWarehouseAction::execute($inputs);
+        if (!empty($inputs['items'])) {
+            $record->items()->sync($inputs['items']);
+        }
         if ($record) {
             return redirect(route('warehouses.index'));
         } else {
@@ -43,10 +56,12 @@ class WarehousesController extends Controller
         }
     }
 
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
+        $inputs = $request->all();
         $record = GetWarehouseAction::execute($id);
-        return view('dashboard.warehouses.edit', compact('record'));
+        $items = ListItemsAction::execute($inputs);
+        return view('dashboard.warehouses.edit', compact('record', 'items'));
     }
 
     public function update(Request $request, $id)
@@ -59,6 +74,10 @@ class WarehousesController extends Controller
 
 
         $inputs = $request->all();
+        $warehouse = GetWarehouseAction::execute($id);
+        if (!empty($inputs['items'])) {
+                $warehouse->items()->sync($inputs['items']);
+        }
         $record = UpdateWarehouseAction::execute($id, $inputs);
 
         if ($record) {

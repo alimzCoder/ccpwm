@@ -8,5 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Warehouse extends Model
 {
     use HasFactory;
-    protected $fillable = ['name','address'];
+
+    protected $fillable = ['name', 'address'];
+
+    public function items()
+    {
+        return $this->belongsToMany(Item::class, 'items_warehouses');
+    }
+
 }
+

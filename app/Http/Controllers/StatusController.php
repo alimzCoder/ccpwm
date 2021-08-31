@@ -78,7 +78,7 @@ class StatusController extends Controller
     public function destroy($id)
     {
         $record = Status::find($id);
-        if($record->itemCategories()->exists()){
+        if($record->items()->exists()){
             return redirect()->back()->with('error', 'Error in deleting a record');
         }else{
             $record = DestroyStatusAction::execute($id);

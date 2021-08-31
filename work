@@ -1,0 +1,10 @@
+1)Authentication System [Login - Register - Logout] , users has role + seeder admin123@gmail.com email by default user
+2)Implement of New Dashboard Design
+3) on menu bar :
+   I)Dashboard field to displaying all system information
+   II)Currencies field (CRUD - Controller - Views [index - create - edit] - Model - Seeder[2 default Currencies LBN & USD])
+   III)Warehouse field (CRUD - Controller - Views [index - create - edit] - Model)
+   IV)Taxes field (CRUD - Controller - Views [index - create - edit] - Model)
+   V)Item Category  (CRUD - Controller - Views [index - create - edit] - Model - relation with status & parentCategory)
+   VI)Items  (CRUD - Controller - Views [index - create - edit] - Model - Export data as Excel file - insert image - relation with Manufacturer Categories and Statuses)
+   VII)Statuses (CRUD - Controller - Views [index - create - edit] - Model)

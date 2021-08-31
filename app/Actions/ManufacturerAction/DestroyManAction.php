@@ -10,7 +10,12 @@
 namespace App\Actions\ManufacturerAction;
 
 
+use App\Models\Manufacturer;
+
 class DestroyManAction
 {
-
+    public static function execute($id){
+        $record = Manufacturer::find($id);
+        return $record->delete($id);
+    }
 }

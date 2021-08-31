@@ -45,7 +45,7 @@
                 </div>
 
                 <div>
-                    <label for="bg_color">Text Color</label>
+                    <label for="bg_color">Background Color</label>
                     <div><input class="w-56" type="text" id="bg_color" name="bg_color" placeholder=" Background Color..."></div>
                     @error('bg_color')
                     <div class="text-red-600 text-sm">{{$message}}</div>
